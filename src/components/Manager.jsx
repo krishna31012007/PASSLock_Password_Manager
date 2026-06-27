@@ -45,6 +45,8 @@ const Manager = () => {
     let req = await fetch("http://localhost:3000/");  /* get the passwords in the form of json file from the backend */
     let passwords = await req.json();  /* save it in form of json in passwords */
 
+      console.log(passwords);
+
     setpasswordArray(passwords);   /* and then save that password in our state passwordarray as array */
 };
 
@@ -85,6 +87,16 @@ const Manager = () => {
         username: "",
         password: ""
     });
+       
+  {document.querySelector('#btn').innerHTML = `<lord-icon
+    src="https://cdn.lordicon.com/vjgknpfx.json"
+        trigger="hover"
+        state="hover-swirl"
+        colors="primary:#000000,secondary:#ffffff">
+    </lord-icon>Add Password`}
+
+
+
 };
 
   const deletepassword = async (id) => {
@@ -248,7 +260,7 @@ theme="light"
           {/* edit pass word edit the from */}
         <div onClick={()=>{editpassword(item.id)}}><lord-icon src="https://cdn.lordicon.com/exymduqj.json" trigger="hover"></lord-icon></div>
         {/* deletepassword delete the form from backend */}
-        <div onClick={()=>{deletepassword(item.id); deleted()}}><lord-icon src="https://cdn.lordicon.com/jzinekkv.json" trigger="hover"> </lord-icon></div>
+        <div onClick={()=>{deletepassword(item.id)}}><lord-icon src="https://cdn.lordicon.com/jzinekkv.json" trigger="hover"> </lord-icon></div>
         </div>
       </td>
     </tr>
