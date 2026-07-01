@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from "react-router-dom";
+
 
 const Navbar = () => {
   return (
@@ -9,19 +11,22 @@ const Navbar = () => {
         <span className='text-purple-200 text-[20px]'>&gt;</span>
         </div>
       <ul className='flex gap-4'>
-        <a className='flex justify-center items-center gap-0.5' href="">
+        <Link className='flex justify-center items-center gap-0.5' to="/">
           <li className='hover:font-bold mx-1 text-[16px]'>Home</li>
-        </a><a className='flex justify-center items-center gap-0.5' href="">
+        </Link>
+        <Link className='flex justify-center items-center gap-0.5' to="/About">
           <li className='hover:font-bold mx-2 text-[16px]'>About</li>
-        </a><a className='flex justify-center items-center gap-0.5' href="">
+        </Link>
+        <Link className='flex justify-center items-center gap-0.5' to="/Contact">
           <li className='hover:font-bold text-[16px]'>Contact</li>
-        </a>
-        <a className='flex justify-center items-center gap-0.5 hover:font-bold' href="https://github.com/krishna31012007"><img width={28} src="/github.svg" alt="" />Github</a>
+        </Link>
+        <Link className='flex justify-center items-center gap-0.5 hover:font-bold' to="https://github.com/krishna31012007"><img width={28} src="/github.svg" alt="" />Github</Link>
       </ul>
     </nav>
   )
 }
 
 export default Navbar
+
 
 
