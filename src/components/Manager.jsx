@@ -5,6 +5,9 @@ import { ToastContainer, toast } from 'react-toastify';   /* for the pop up msgs
 import { v4 as uuidv4 } from 'uuid';  /* for unique key get this from its documentation */
 
 
+/* backend URL: set VITE_API_URL in a .env file locally, and in Vercel's project env vars for production */
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 /* main function */
 const Manager = () => {
 
@@ -42,7 +45,7 @@ const Manager = () => {
 
 
   const getpasswords = async () => {  
-    let req = await fetch("http://localhost:3000/");  /* get the passwords in the form of json file from the backend */
+    let req = await fetch(`${API_URL}/`);  /* get the passwords in the form of json file from the backend */
     let passwords = await req.json();  /* save it in form of json in passwords */
 
       console.log(passwords);
@@ -64,7 +67,7 @@ const Manager = () => {
         id: uuidv4()
     };  /* this give a id to the form */
 
-    await fetch("http://localhost:3000/", { /* send req to backend to get the access of the passwords that we store in your backend */
+    await fetch(`${API_URL}/`, { /* send req to backend to get the access of the passwords that we store in your backend */
         method: "DELETE",   /* use delete method for the editing button part*/
         headers: {  /* this tell we are sending some json data */
             "Content-Type": "application/json"
@@ -72,7 +75,7 @@ const Manager = () => {
         body: JSON.stringify({ id: form.id })  /* delete that id from the backend according to the method and here we are using delete method */
     });
 
-    await fetch("http://localhost:3000/", {
+    await fetch(`${API_URL}/`, {
         method: "POST",  /* use post request method */
         headers: {
             "Content-Type": "application/json"
@@ -105,7 +108,7 @@ const Manager = () => {
 
     if (!c) return;
 
-    await fetch("http://localhost:3000/", {  /* send an request to your backend to get access to this link */
+    await fetch(`${API_URL}/`, {  /* send an request to your backend to get access to this link */
         method: "DELETE",             /* this tell express to use the delete wala part */
         headers: {
             "Content-Type": "application/json"
@@ -135,7 +138,7 @@ const showpassword = () => {
 };
 
 const editpassword = (id) => {
-    setform({...passwordArray.filter(i=>i.id===id)[0],id: id});  /* set form set the forms values to that id that we clicked and becuase the inputs values we use is forms value then the inpur automatically get filled with the values of that d that we clicked */
+    setform({...passwordArray.filter(i=>i.id===id)[0],id: id});  /* set form set the forms values to that id that we clicked and becuase the inputs values we use is forms value then the inpur automatically get filled with the values of that id that we clicked */
       const newArray = passwordArray.filter(
     (item) => item.id !== id
   ); /* delete that form from the array */
@@ -157,7 +160,7 @@ const deleteall = async () => {
   if (!c) return; 
 
   try {
-    await fetch("http://localhost:3000/all", {  /* this will send a request to all the password that are present in the passwordArray*/
+    await fetch(`${API_URL}/all`, {  /* this will send a request to all the password that are present in the passwordArray*/
       method: "DELETE"                    /* this method delete tell the express(backend) to use the app.delete wala part */
     });
 
@@ -277,7 +280,3 @@ theme="light"
 }
 
 export default Manager
-
-
-
-

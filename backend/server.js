@@ -6,9 +6,11 @@ const cors = require('cors'); // import cors middleware to allow frontend reques
 dotenv.config(); 
 
 const app = express(); 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-app.use(cors()); 
+app.use(cors({
+    origin: process.env.CLIENT_URL || "*" // set CLIENT_URL to your Vercel URL in Render's env vars
+})); 
 app.use(express.json()); // Parse incoming JSON request bodies automatically
 
 // Create MongoDB client using connection string stored in .env
